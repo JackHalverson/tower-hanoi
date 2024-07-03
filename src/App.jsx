@@ -1,5 +1,5 @@
 import './App.css';
-import Game from './Game';
+import Game from './game';
 
 function App() {
   return (
@@ -7,7 +7,6 @@ function App() {
       <h1>Towers of Hanoi</h1>
       <Game />
       <footer><p>Created by Jackson Halverson</p></footer>
-      
     </>
   );
 }
