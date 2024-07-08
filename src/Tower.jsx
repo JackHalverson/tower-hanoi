@@ -13,7 +13,7 @@ export default function Tower({ discs, id }) {
   return (
     <div ref={setNodeRef} className="tower" style={style}>
       {discs.map((size, index) => (
-        <Disc key={index} size={size} towerId={id} />
+        <Disc key={index} size={size} towerId={id.split('-')[1]} />
       ))}
     </div>
   );

@@ -11,27 +11,37 @@ export default function Game() {
     const { active, over } = event;
     if (!over) return;
 
-    const activeIdParts = active.id.split('-');
-    const overIdParts = over.id.split('-');
+    const fromTowerIndex = parseInt(active.id.split('-')[1]);
+    const toTowerIndex = parseInt(over.id.split('-')[1]);
 
-    const fromTowerIndex = parseInt(activeIdParts[1]);
-    const toTowerIndex = parseInt(overIdParts[1]);
+    console.log("Drag Ended: ", { active, over });
+    console.log("From Tower Index: ", fromTowerIndex);
+    console.log("To Tower Index: ", toTowerIndex);
+    console.log("Towers: ", towers);
 
-    if (isNaN(fromTowerIndex) || isNaN(toTowerIndex)) return;
+    if (isNaN(fromTowerIndex) || isNaN(toTowerIndex)) {
+      console.error("Invalid tower index");
+      return;
+    }
 
-    const activeTower = towers[fromTowerIndex];
-    const overTower = towers[toTowerIndex];
+    if (fromTowerIndex !== toTowerIndex) {
+      const activeTower = [...towers[fromTowerIndex]];
+      const overTower = [...towers[toTowerIndex]];
 
-    if (!Array.isArray(activeTower) || !Array.isArray(overTower)) return;
+      if (!Array.isArray(activeTower) || !Array.isArray(overTower)) {
+        console.error("Towers are not arrays");
+        return;
+      }
 
-    const disc = activeTower.pop();
-    overTower.push(disc);
+      const disc = activeTower.pop();
+      overTower.push(disc);
 
-    const newTowers = [...towers];
-    newTowers[fromTowerIndex] = activeTower;
-    newTowers[toTowerIndex] = overTower;
+      const newTowers = [...towers];
+      newTowers[fromTowerIndex] = activeTower;
+      newTowers[toTowerIndex] = overTower;
 
-    setTowers(newTowers);
+      setTowers(newTowers);
+    }
   };
 
   return (
