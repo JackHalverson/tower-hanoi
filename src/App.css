@@ -32,3 +32,8 @@
 .disc:first-child {
   margin-bottom: 0;
 }
+
+.move-counter {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}

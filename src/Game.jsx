@@ -9,6 +9,7 @@ const initialDiscs = [6, 5, 4, 3, 2, 1];
 export default function Game() {
   const [towers, setTowers] = useState([initialDiscs, [], []]);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [moveCount, setMoveCount] = useState(0);
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
@@ -46,8 +47,9 @@ export default function Game() {
         newTowers[toTowerIndex] = overTower;
 
         setTowers(newTowers);
+        setMoveCount(moveCount + 1);
 
-        if (overTower.length === initialDiscs.length) {
+        if (toTowerIndex === 2 && overTower.length === initialDiscs.length) {
           setShowConfetti(true);
           notify("Congratulations! You have solved the puzzle!", "success");
           setTimeout(() => setShowConfetti(false), 3000);
@@ -61,6 +63,8 @@ export default function Game() {
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
+      <div className="move-counter">Moves: {moveCount}</div>
+
       <main className="game">
         {towers.map((discs, index) => (
           <Tower key={index} id={`tower-${index}`} discs={discs} />
