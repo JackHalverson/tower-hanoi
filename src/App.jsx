@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Game from './game';
+import Game from './Game';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
