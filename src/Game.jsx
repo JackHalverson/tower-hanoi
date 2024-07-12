@@ -1,11 +1,14 @@
 import { DndContext } from '@dnd-kit/core';
 import Tower from './Tower';
 import { useState } from 'react';
+import Confetti from './Confetti';
+import { notify } from './toastify';
 
 const initialDiscs = [6, 5, 4, 3, 2, 1];
 
 export default function Game() {
   const [towers, setTowers] = useState([initialDiscs, [], []]);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
@@ -34,13 +37,25 @@ export default function Game() {
       }
 
       const disc = activeTower.pop();
-      overTower.push(disc);
 
-      const newTowers = [...towers];
-      newTowers[fromTowerIndex] = activeTower;
-      newTowers[toTowerIndex] = overTower;
+      if (overTower.length === 0 || disc < overTower[overTower.length - 1]) {
+        overTower.push(disc);
 
-      setTowers(newTowers);
+        const newTowers = [...towers];
+        newTowers[fromTowerIndex] = activeTower;
+        newTowers[toTowerIndex] = overTower;
+
+        setTowers(newTowers);
+
+        if (overTower.length === initialDiscs.length) {
+          setShowConfetti(true);
+          notify("Congratulations! You have solved the puzzle!", "success");
+          setTimeout(() => setShowConfetti(false), 3000);
+        }
+      } else {
+        activeTower.push(disc);
+        notify("Invalid move! You cannot place a larger disc on a smaller one.", "error");
+      }
     }
   };
 
@@ -50,6 +65,7 @@ export default function Game() {
         {towers.map((discs, index) => (
           <Tower key={index} id={`tower-${index}`} discs={discs} />
         ))}
+        {showConfetti && <Confetti />}
       </main>
     </DndContext>
   );
