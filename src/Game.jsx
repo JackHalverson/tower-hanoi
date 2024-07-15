@@ -51,7 +51,7 @@ export default function Game() {
 
         if (toTowerIndex === 2 && overTower.length === initialDiscs.length) {
           setShowConfetti(true);
-          notify("Congratulations! You have solved the puzzle!", "success");
+          notify("Congratulations! You have solved the puzzle in " + moveCount + " Moves!", "success");
           setTimeout(() => setShowConfetti(false), 3000);
         }
       } else {

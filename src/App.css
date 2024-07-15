@@ -20,12 +20,12 @@
   border-radius: 1em;
   padding: 1em 0;
   position: relative;
-  height: 400px;
+  height: 250px;
+  padding-bottom: 100px;
 }
 
 .disc {
-  position: relative;
-  margin-bottom: -30px;
+  position: absolute;
   z-index: 1;
 }
 
@@ -36,4 +36,14 @@
 .move-counter {
   font-size: 1.5em;
   margin-bottom: 1em;
+}
+
+.disc-spacer {
+  position: relative;
+  height: 30px;
+}
+
+.thing{
+  display: flex;
+  justify-content: center;
 }

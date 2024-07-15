@@ -25,8 +25,12 @@ export default function Disc({ size, towerId }) {
   };
 
   return (
+    <div className='thing'>
     <div ref={setNodeRef} style={style} className="disc" {...attributes} {...listeners}>
       <img src={discImages[size]} alt={`Disc ${size}`} />
+      
+    </div>
+    <div className='disc-spacer'></div>
     </div>
   );
 }
