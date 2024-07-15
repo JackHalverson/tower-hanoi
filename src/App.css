@@ -47,3 +47,18 @@
   display: flex;
   justify-content: center;
 }
+
+.reset-button{
+  margin-top: 2em;
+  margin: 1em;
+  padding: 0.5em 1em;
+  background-color: #2a2a2a;
+  color: white;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+}
+
+.reset-button:hover{
+  background-color: #4a4a4a;
+}

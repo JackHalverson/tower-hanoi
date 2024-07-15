@@ -61,6 +61,12 @@ export default function Game() {
     }
   };
 
+  const resetGame = () => {
+    setTowers([[1,2,3,4,5,6], [], []]);
+    setMoveCount(0);
+    setShowConfetti(false);
+  };
+
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="move-counter">Moves: {moveCount}</div>
@@ -71,6 +77,7 @@ export default function Game() {
         ))}
         {showConfetti && <Confetti />}
       </main>
+      <button onClick={resetGame} className="reset-button">Reset Game</button>
     </DndContext>
   );
 }
