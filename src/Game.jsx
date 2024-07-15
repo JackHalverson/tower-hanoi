@@ -62,7 +62,7 @@ export default function Game() {
   };
 
   const resetGame = () => {
-    setTowers([[1,2,3,4,5,6], [], []]);
+    setTowers([initialDiscs, [], []]);
     setMoveCount(0);
     setShowConfetti(false);
   };
